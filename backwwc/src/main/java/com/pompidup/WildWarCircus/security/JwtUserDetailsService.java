@@ -39,6 +39,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		User newUser = new User();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setMoney(user.getMoney());
 		newUser.setBot(user.isBot());
 		newUser.setCircus(circusRepository.findById(user.getCircusId()).get());
 		return userDao.save(newUser);

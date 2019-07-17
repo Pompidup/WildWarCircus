@@ -32,8 +32,11 @@ public class ShowController {
         current.setPicture(_show.getPicture());
         current.setPopUp(_show.getPopUp());
         current.setType(_show.getType());
-        current.setCircus(circusRepository.findById(_show.getCircusId()).get());
-
+        current.setCost(_show.getCost());
+        current.setMaintenance(_show.getMaintenance());
+        if (_show.getCircusId() != null) {
+            current.setCircus(circusRepository.findById(_show.getCircusId()).get());
+        }
         return showRepository.save(current);
     }
 

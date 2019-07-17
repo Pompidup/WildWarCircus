@@ -26,7 +26,9 @@ public class StandController {
     @PostMapping("/stand")
     public Stand createStand(@RequestBody StandDTO _stand) throws Exception{
         Stand current = new Stand();
-        current.setCircus(circusRepository.findById(_stand.getCircusId()).get());
+        if (_stand.getCircusId() != null) {
+            current.setCircus(circusRepository.findById(_stand.getCircusId()).get());
+        }
         current.setConvertion(_stand.getConvertion());
         current.setCost(_stand.getCost());
         current.setGain(_stand.getGain());
