@@ -19,6 +19,11 @@ public class CircusController {
         return circusRepository.findAll();
     }
 
+    @GetMapping("/circus/{id}")
+    public Circus getCircusById(@PathVariable long id) {
+        return circusRepository.findById(id).get();
+    }
+
     @PostMapping("circus")
     public Circus createCircus(@RequestBody Circus circus) {
         return circusRepository.save(circus);
@@ -50,6 +55,15 @@ public class CircusController {
         }
         if(circus.getPrice() != null) {
             circusToUpdate.setPrice(circus.getPrice());
+        }
+        if(circus.getPopularity() != null) {
+            circusToUpdate.setPopularity(circus.getPopularity());
+        }
+        if(circus.getNbShowMax() != null) {
+            circusToUpdate.setNbShowMax(circus.getNbShowMax());
+        }
+        if(circus.getNbStandMax() != null) {
+            circusToUpdate.setNbStandMax(circus.getNbStandMax());
         }
         return circusRepository.save(circusToUpdate);
     }

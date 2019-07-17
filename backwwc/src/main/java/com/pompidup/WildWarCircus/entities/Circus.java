@@ -17,9 +17,12 @@ public class Circus {
     private Double price;
     private Double capacity;
     private Integer nbShow;
+    private Integer nbShowMax;
     private Integer nbStand;
+    private Integer nbStandMax;
     private Integer level;
     private Double cost;
+    private Double popularity;
 
     @OneToOne(mappedBy = "circus")
     @JsonIgnore
@@ -150,5 +153,29 @@ public class Circus {
 
     public void setCrasses(List<Crasse> crasses) {
         this.crasses = crasses;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    public Integer getNbShowMax() {
+        return nbShowMax;
+    }
+
+    public void setNbShowMax(Integer nbShowMax) {
+        this.nbShowMax = nbShowMax;
+    }
+
+    public Integer getNbStandMax() {
+        return nbStandMax;
+    }
+
+    public void setNbStandMax(Integer nbStandMax) {
+        this.nbStandMax = nbStandMax;
     }
 }

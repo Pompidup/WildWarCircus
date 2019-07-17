@@ -12,10 +12,11 @@ public class User {
     private String username;
     private String password;
     private String picture;
-    private boolean bot;
+    private Boolean bot;
+    private Double money;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn
     private Circus circus;
 
@@ -54,11 +55,11 @@ public class User {
         this.picture = picture;
     }
 
-    public boolean isBot() {
+    public Boolean isBot() {
         return bot;
     }
 
-    public void setBot(boolean bot) {
+    public void setBot(Boolean bot) {
         this.bot = bot;
     }
 
@@ -68,5 +69,13 @@ public class User {
 
     public void setCircus(Circus circus) {
         this.circus = circus;
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
     }
 }

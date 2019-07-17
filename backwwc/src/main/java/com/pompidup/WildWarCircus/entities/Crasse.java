@@ -18,7 +18,7 @@ public class Crasse {
     private int missTurn;
     private String picture;
 
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn
     @JsonIgnore
     private Circus circus;

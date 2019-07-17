@@ -1,50 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../class/user';
 
-export class User {
-  constructor(
-    public status: string,
-  ) { }
 
-}
-
-export class JwtResponse {
-  constructor(
-    public jwttoken: string,
-  ) { }
-
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
-  constructor(private httpClient: HttpClient) { }
+    constructor(private http: HttpClient) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
-  authenticate(username, password) {
-    return this.httpClient.post<any>('http://localhost:8080/authenticate', { username, password }).pipe(
-      map(
-        userData => {
-          sessionStorage.setItem('username', username);
-          let tokenStr = 'Bearer ' + userData.token;
-          sessionStorage.setItem('token', tokenStr);
-          return userData;
-        }
-      )
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
+    }
 
-    );
-  }
+    login(username: string, password: string) {
+        return this.http.post<any>('http://localhost:8080/authenticate', { username, password })
+            .pipe(map(user => {
+                // login successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
 
+                return user;
+            }));
+    }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    //console.log(!(user === null))
-    return !(user === null)
-  }
-
-  logOut() {
-    sessionStorage.removeItem('username')
-  }
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+    }
 }

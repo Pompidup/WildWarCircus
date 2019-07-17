@@ -6,12 +6,20 @@ public class UserDTO {
     private String username;
     private String password;
     private String picture;
-    private boolean bot;
+    private Boolean bot;
+    private Double money;
     private Long circusId;
 
     public UserDTO() {
     }
 
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
 
     public String getUsername() {
         return username;
@@ -37,11 +45,11 @@ public class UserDTO {
         this.picture = picture;
     }
 
-    public boolean isBot() {
+    public Boolean isBot() {
         return bot;
     }
 
-    public void setBot(boolean bot) {
+    public void setBot(Boolean bot) {
         this.bot = bot;
     }
 

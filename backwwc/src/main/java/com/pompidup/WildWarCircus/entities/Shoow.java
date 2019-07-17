@@ -19,7 +19,7 @@ public class Shoow {
     private String description;
     private String picture;
 
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn
     @JsonIgnore
     private Circus circus;

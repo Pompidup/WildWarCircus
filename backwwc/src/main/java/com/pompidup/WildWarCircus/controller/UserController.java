@@ -30,6 +30,7 @@ public class UserController {
         current.setPassword(_user.getPassword());
         current.setUsername(_user.getUsername());
         current.setBot(_user.isBot());
+        current.setMoney(_user.getMoney());
         current.setCircus(circusRepository.findById(_user.getCircusId()).get());
 
         return userRepository.save(current);
@@ -48,13 +49,25 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody User user) {
+    public User updateUser(@PathVariable long id, @RequestBody UserDTO user) {
         User userToUpdate = userRepository.findById(id).get();
         if (user.getUsername() != null) {
             userToUpdate.setUsername(user.getUsername());
         }
         if (user.getPassword() != null) {
             userToUpdate.setPassword(user.getPassword());
+        }
+        if (user.getMoney() != null) {
+            userToUpdate.setMoney(user.getMoney());
+        }
+        if (user.getPicture() != null) {
+            userToUpdate.setPicture(user.getPicture());
+        }
+        if (user.getCircusId() != null) {
+            userToUpdate.setCircus(circusRepository.findById(user.getCircusId()).get());
+        }
+        if (user.isBot() != null) {
+            userToUpdate.setBot(user.isBot());
         }
         return userRepository.save(userToUpdate);
     }
