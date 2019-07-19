@@ -12,10 +12,10 @@ public class Shoow {
     private Long id;
 
     private String name;
-    private double cost;
+    private Double cost;
     private String type;
-    private double maintenance;
-    private double popUp;
+    private Double maintenance;
+    private Double popUp;
     private String description;
     private String picture;
 
@@ -43,36 +43,36 @@ public class Shoow {
         this.name = name;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public Double getCost() {
+        return cost;
     }
 
-    public double getMaintenance() {
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public Double getMaintenance() {
         return maintenance;
     }
 
-    public void setMaintenance(double maintenance) {
+    public void setMaintenance(Double maintenance) {
         this.maintenance = maintenance;
     }
 
-    public double getPopUp() {
+    public Double getPopUp() {
         return popUp;
     }
 
-    public void setPopUp(double popUp) {
+    public void setPopUp(Double popUp) {
         this.popUp = popUp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {

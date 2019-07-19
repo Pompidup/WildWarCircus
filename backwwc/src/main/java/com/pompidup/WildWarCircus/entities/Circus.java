@@ -24,9 +24,8 @@ public class Circus {
     private Double cost;
     private Double popularity;
 
-    @OneToOne(mappedBy = "circus")
-    @JsonIgnore
-    private User user;
+    @OneToMany(mappedBy = "circus", cascade = CascadeType.ALL)
+    private List<User> user;
 
     @OneToMany(mappedBy = "circus", cascade = CascadeType.ALL)
     private List<Shoow> shoows;
@@ -115,11 +114,11 @@ public class Circus {
         this.cost = cost;
     }
 
-    public User getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 

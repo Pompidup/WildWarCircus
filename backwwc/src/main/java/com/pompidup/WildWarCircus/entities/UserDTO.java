@@ -3,21 +3,34 @@ package com.pompidup.WildWarCircus.entities;
 
 public class UserDTO {
 
+    private Long id;
     private String username;
     private String password;
     private String picture;
     private Boolean bot;
-    private Double money;
+    private Integer money;
     private Long circusId;
 
     public UserDTO() {
     }
 
-    public Double getMoney() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getBot() {
+        return bot;
+    }
+
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 

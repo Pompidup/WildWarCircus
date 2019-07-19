@@ -1,0 +1,14 @@
+.top-bar {
+  background-color: teal;
+  color: antiquewhite;
+
+}
+a:link
+{
+  text-decoration:none;
+}
+ul {
+  list-style:none;
+  margin-left:0;
+  padding-left:0;
+  }

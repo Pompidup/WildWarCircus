@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login';
-import { AuthGuard } from './_guards/auth.guard';
-import { AppComponent } from './app.component';
 import { FirstCircusComponent } from './first-circus/first-circus.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'first', component: FirstCircusComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: '', component: RegisterComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'first', component: FirstCircusComponent},
+  { path: 'dashboard', component: DashboardComponent},
   { path: '**', redirectTo: '' },
 ];
 

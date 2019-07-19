@@ -31,13 +31,27 @@ public class PubController {
         current.setCost(_pub.getCost());
         current.setPicture(_pub.getPicture());
         current.setPopUp(_pub.getPopUp());
-        current.setCircus(circusRepository.findById(_pub.getCircusId()).get());
-
+        if(_pub.getCircusId() != null) {
+            current.setCircus(circusRepository.findById(_pub.getCircusId()).get());
+        }
         return  pubRepository.save(current);
     }
 
+    @PutMapping("pub/{id}")
+    public Pub updatePub(@PathVariable Long id, @RequestBody PubDTO pub) {
+        Pub pubToUpdate = pubRepository.findById(id).get();
+        if(pub.getName() != null) {pubToUpdate.setName(pub.getName());}
+        if(pub.getCost() != null) {pubToUpdate.setCost(pub.getCost());}
+        if(pub.getPopUp() != null) {pubToUpdate.setPopUp(pub.getPopUp());}
+        if(pub.getDescription() != null) {pubToUpdate.setDescription(pub.getDescription());}
+        if(pub.getPicture() != null) {pubToUpdate.setPicture(pub.getPicture());}
+        if(pub.getCircusId() != null) {pubToUpdate.setCircus(circusRepository.findById(pub.getCircusId()).get());}
+
+        return pubRepository.save(pubToUpdate);
+    }
+
     @DeleteMapping("pub/{id}")
-    public boolean deletePub(@PathVariable long id) {
+    public boolean deletePub(@PathVariable Long id) {
         pubRepository.deleteById(id);
         return true;
     }

@@ -13,13 +13,15 @@ import { User } from '../class/user';
 export class FirstCircusComponent implements OnInit {
 
   listCircus: Circus[];
-  users: User[] = [];
-  myUserId:number;
+  myUser: User;
+  allUser: User[];
 
 
   constructor(private circusService: CircusService, private userService: UserService, private router: Router) {
     this.listCircus = [];
-   }
+    this.allUser = [];
+    this.myUser = new User;
+  }
 
   ngOnInit() {
     this.circusService.getAllCircus().subscribe(
@@ -29,19 +31,34 @@ export class FirstCircusComponent implements OnInit {
     );
 
     this.userService.getAllUser().subscribe(
-      (users: User[]) => {
-      this.users = users;
-    }
+      (user: User[]) => {
+        this.allUser = user;
+      }
+
     );
+
+
+  };
+
+  init() {
+    for (let i: number = 0; i < this.allUser.length; i++) {
+      if (this.allUser[i].username == localStorage.getItem('username')) {
+        this.myUser = this.allUser[i];
+      }
+    }
   }
 
-  choose(data:any) {
-    this.users[0].money -= data.cost;
-    this.users[0].circusId = data.id;
-    this.myUserId = this.users[0].id;
+  choose(data: any) {
 
-    this.userService.updateUser(this.users[0].id, this.users[0]).subscribe(data => console.log('Done'), error => console.log(error));
-    this.router.navigateByUrl('/dashboard');
+    if (this.myUser.money >= data.cost) {
+      this.myUser.money -= data.cost;
+      this.myUser.circusId = data.id;
+      this.userService.updateUser(this.myUser.id, this.myUser).subscribe(data => console.log('Done'), error => console.log(error));
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      alert("Désolé t'as pas assez !!")
+    }
+
   }
 
 

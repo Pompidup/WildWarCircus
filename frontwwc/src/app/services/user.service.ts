@@ -14,7 +14,13 @@ export class UserService {
       return this.http.get<User[]>('http://localhost:8080/user/all');
     }
 
+    public getOneUser(username): Observable<User> {
+      console.log(username);
+      return this.http.get<User>('http://localhost:8080/user?username='+username)
+    }
+
     public updateUser(id:number, value:any): Observable<Object> {
+      console.log('putain d idddddddddddddddddddddddddddddddddddddddddddddddddddd',id)
       return this.http.put('http://localhost:8080/user/'+id, value);
     }
   }

@@ -10,7 +10,7 @@ export class PubService {
 
   constructor(private http: HttpClient) { }
 
-    public getAllStand(): Observable<Pub[]> {
+    public getAllPub(): Observable<Pub[]> {
       return this.http.get<Pub[]>('http://localhost:8080/pub/all');
     }
 

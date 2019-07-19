@@ -12,10 +12,10 @@ public class Stand {
     private Long id;
 
     private String name;
-    private double gain;
-    private double cost;
-    private double maintenance;
-    private float convertion;
+    private Double gain;
+    private Double cost;
+    private Double maintenance;
+    private Float convertion;
     private String description;
     private String picture;
 
@@ -43,35 +43,35 @@ public class Stand {
         this.name = name;
     }
 
-    public double getGain() {
+    public Double getGain() {
         return gain;
     }
 
-    public void setGain(double gain) {
+    public void setGain(Double gain) {
         this.gain = gain;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
-    public double getMaintenance() {
+    public Double getMaintenance() {
         return maintenance;
     }
 
-    public void setMaintenance(double maintenance) {
+    public void setMaintenance(Double maintenance) {
         this.maintenance = maintenance;
     }
 
-    public float getConvertion() {
+    public Float getConvertion() {
         return convertion;
     }
 
-    public void setConvertion(float convertion) {
+    public void setConvertion(Float convertion) {
         this.convertion = convertion;
     }
 

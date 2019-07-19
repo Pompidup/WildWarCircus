@@ -4,10 +4,10 @@ public class ShoowDTO {
 
 
     private String name;
-    private double cost;
+    private Double cost;
     private String type;
-    private double maintenance;
-    private double popUp;
+    private Double maintenance;
+    private Double popUp;
     private String description;
     private String picture;
     private Long circusId;
@@ -24,11 +24,11 @@ public class ShoowDTO {
         this.name = name;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
@@ -40,19 +40,19 @@ public class ShoowDTO {
         this.type = type;
     }
 
-    public double getMaintenance() {
+    public Double getMaintenance() {
         return maintenance;
     }
 
-    public void setMaintenance(double maintenance) {
+    public void setMaintenance(Double maintenance) {
         this.maintenance = maintenance;
     }
 
-    public double getPopUp() {
+    public Double getPopUp() {
         return popUp;
     }
 
-    public void setPopUp(double popUp) {
+    public void setPopUp(Double popUp) {
         this.popUp = popUp;
     }
 
