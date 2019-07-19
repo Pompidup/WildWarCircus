@@ -32,13 +32,28 @@ public class CrasseController {
         current.setName(_crasse.getName());
         current.setPicture(_crasse.getPicture());
         current.setPopDown(_crasse.getPopDown());
-        current.setCircus(circusRepository.findById(_crasse.getCircusId()).get());
-
+        if(_crasse.getCircusId() != null) {
+            current.setCircus(circusRepository.findById(_crasse.getCircusId()).get());
+        }
         return crasseRepository.save(current);
     }
 
+    @PutMapping("/crasse/{id}")
+    public Crasse updateCrasse(@PathVariable Long id, @RequestBody CrasseDTO crasse) {
+        Crasse crasseToUpdate = crasseRepository.findById(id).get();
+        if(crasse.getName() != null) {crasseToUpdate.setName(crasse.getName());}
+        if(crasse.getCost() != null) {crasseToUpdate.setCost(crasse.getCost());}
+        if(crasse.getDescription() != null) {crasseToUpdate.setDescription(crasse.getDescription());}
+        if(crasse.getPopDown() != null) {crasseToUpdate.setPopDown(crasse.getPopDown());}
+        if(crasse.getMissTurn() != null) {crasseToUpdate.setMissTurn(crasse.getMissTurn());}
+        if(crasse.getPicture() != null) {crasseToUpdate.setPicture(crasse.getPicture());}
+        if(crasse.getCircusId() != null) {crasseToUpdate.setCircus(circusRepository.findById(crasse.getCircusId()).get());}
+
+        return crasseRepository.save(crasseToUpdate);
+    }
+
     @DeleteMapping("crasse/{id}")
-    public boolean deleteCrasse(@PathVariable long id) {
+    public boolean deleteCrasse(@PathVariable Long id) {
         crasseRepository.deleteById(id);
         return true;
     }

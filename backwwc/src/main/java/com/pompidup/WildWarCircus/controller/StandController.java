@@ -40,8 +40,24 @@ public class StandController {
         return standRepository.save(current);
     }
 
+    @PutMapping("/stand/{id}")
+    public Stand updateStand(@PathVariable Long id, @RequestBody StandDTO stand) {
+        Stand standToUpdate = standRepository.findById(id).get();
+        if(stand.getConvertion() != null) { standToUpdate.setConvertion(stand.getConvertion()); }
+        if(stand.getName() != null) { standToUpdate.setName(stand.getName()); }
+        if(stand.getGain() != null) { standToUpdate.setGain(stand.getGain()); }
+        if(stand.getCost() != null) { standToUpdate.setCost(stand.getCost()); }
+        if(stand.getMaintenance() != null) { standToUpdate.setMaintenance(stand.getMaintenance()); }
+        if(stand.getDescription() != null) { standToUpdate.setDescription(stand.getDescription()); }
+        if(stand.getPicture() != null) { standToUpdate.setPicture(stand.getPicture()); }
+        if(stand.getCircusId() != null) {
+            standToUpdate.setCircus(circusRepository.findById(stand.getCircusId()).get());
+        }
+            return standRepository.save(standToUpdate);
+        }
+
     @DeleteMapping("stand/{id}")
-    public boolean deleteStand(@PathVariable long id) {
+    public boolean deleteStand(@PathVariable Long id) {
         standRepository.deleteById(id);
         return true;
     }

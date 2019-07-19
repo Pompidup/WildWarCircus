@@ -15,9 +15,9 @@ import { UpgradeCircusComponent } from './upgrade-circus/upgrade-circus.componen
 import { CrasseComponent } from './crasse/crasse.component';
 import { ResumeOfSaturdayComponent } from './resume-of-saturday/resume-of-saturday.component';
 import { OpponentComponent } from './opponent/opponent.component';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { JwtInterceptor } from './_helpers/jwt.interceptor'
-import { LoginComponent } from './login/login';
+import { RegisterComponent } from './register/register.component';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { LoginComponent } from './login/login';
     CrasseComponent,
     ResumeOfSaturdayComponent,
     OpponentComponent,
+    RegisterComponent,
     LoginComponent
   ],
   imports: [
@@ -41,10 +42,7 @@ import { LoginComponent } from './login/login';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  ],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

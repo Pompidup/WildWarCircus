@@ -1,99 +1,146 @@
-<h1>DashBoard</h1>
-
-<div class="container" *ngIf="myUser != null && myCircus != null">
-  <div class="row">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src={{myUser.picture}} alt="{{myUser.username}}">
-      <div class="card-body">
-        <h5 class="card-title">{{myUser.money}} $ / Dépense hebdomadaire : {{depense}}</h5>
-        <p class="card-text">Popularité : {{myCircus.popularity}}/100</p>
+<div class="container">
+  <h1>DashBoard</h1>
+  <h2>Semaine n° : {{week}}</h2>
+  <div class="row" *ngIf="myUser != null && myCircus != null">
+    <div>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{myCircus.picture}} alt="{{myCircus.username}}">
+        <div class="card-body">
+          <h5 class="card-title">Dans la caisse : {{myUser.money}} $ Dépense hebdomadaire : {{depense}}</h5>
+          <p class="card-text">Popularité : {{myCircus.popularity}}/100</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'une entrée : {{myCircus.price}}</li>
+          <li class="list-group-item">Nombres de Show : {{myCircus.nbShow}} / {{myCircus.nbShowMax}}
+            <button class="card-link" (click)="addShow()">
+              <span>Acheter des shows</span>
+            </button>
+          </li>
+          <li class="list-group-item">Nombres de Stand : {{myCircus.nbStand}} / {{myCircus.nbStandMax}}
+            <button class="card-link" (click)="addStand()">
+              <span>Acheter des stands</span>
+            </button>
+          </li>
+          <li class="list-group-item">Place maximum : {{myCircus.capacity}}</li>
+          <li class="list-group-item">Niveau actuel : {{myCircus.level}}
+            <button class="card-link" (click)="upLevel()">
+              <span>Upgrade cirque</span>
+            </button>
+          </li>
+        </ul>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Prix d'une entrée : {{myCircus.price}}</li>
-        <li class="list-group-item">Nombres de Show : {{myCircus.nbShow}} / {{myCircus.nbShowMax}}
-          <button class="card-link" (click)="addShow()">
-            <span>Acheter des shows</span>
+        <li class="list-group-item">Lancer une campagne de pub
+          <button class="card-link" (click)="addPub()">
+            <span>Voir les campagnes</span>
           </button>
         </li>
-        <li class="list-group-item">Nombres de Stand : {{myCircus.nbStand}} / {{myCircus.nbStandMax}}
-          <button class="card-link" (click)="addStand()">
-            <span>Acheter des stands</span>
+        <li class="list-group-item">Ralentir un concurent ?
+          <button class="card-link" (click)="addCrasse()">
+            <span>Balancer une crasse !</span>
           </button>
         </li>
-        <li class="list-group-item">Place maximum : {{myCircus.capacity}}</li>
-        <li class="list-group-item">Niveau actuel : {{myCircus.level}}
-          <button class="card-link" (click)="upLevel()">
-            <span>Upgrade cirque</span>
+        <li class="list-group-item">Voir les autres cirques
+          <button class="card-link" (click)="seeBot()">
+            <span>Go</span>
           </button>
+        </li>
+        <li class="list-group-item">Lancer le spéctacle
+          <button class="card-link" (click)="launch()">
+            <span>Mr loyal a vous...</span>
+          </button>
+          <span>Nombres de visiteur attendu : {{myVisitor}} / {{nbVisiteur}}</span>
         </li>
       </ul>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Lancer une campagne de pub
-        <button class="card-link" (click)="addPub()">
-          <span>Voir les campagnes</span>
-        </button>
-      </li>
-      <li class="list-group-item">Ralentir un concurent ?
-        <button class="card-link" (click)="addCrasse()">
-          <span>Balancer une crasse !</span>
-        </button>
-      </li>
-      <li class="list-group-item">Voir les autres cirques
-        <button class="card-link" (click)="seeBot()">
-          <span>Go</span>
-        </button>
-      </li>
-      <li class="list-group-item">Lancer le spéctacle
-        <button class="card-link" (click)="launch()">
-          <span>Mr loyal a vous...</span>
-        </button>
-      </li>
-    </ul>
   </div>
-</div>
 
-<div class="container" *ngIf="showShow">
-  <div class="row">
-    <div *ngFor="let current of allShow" class="card" style="width: 18rem;">
-      <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{current.name}}</h5>
-        <p class="card-text">Description : {{current.description}}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
-        <li class="list-group-item">Cout de maintenance : {{current.maintenance}} $</li>
-        <li class="list-group-item">Gain de popularité : {{current.popUp}}</li>
-        <li class="list-group-item">Type de show : {{current.type}}</li>
-      </ul>
-      <div class="card-body">
-        <button class="card-link" (click)="buyShow(current)">
-          <span>Acheter ce show</span>
-        </button>
+  <div class="container" *ngIf="showShow">
+    <div class="row">
+      <div *ngFor="let current of allShow" class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{current.name}}</h5>
+          <p class="card-text">Description : {{current.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
+          <li class="list-group-item">Cout de maintenance : {{current.maintenance}} $</li>
+          <li class="list-group-item">Gain de popularité : {{current.popUp}}</li>
+          <li class="list-group-item">Type de show : {{current.type}}</li>
+        </ul>
+        <div class="card-body">
+          <button class="card-link" (click)="buyShow(current)">
+            <span>Acheter ce show</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container" *ngIf="showStand">
-  <div class="row">
-    <div *ngFor="let current of allStand" class="card" style="width: 18rem;">
-      <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{current.name}}</h5>
-        <p class="card-text">Description : {{current.description}}</p>
+  <div class="container" *ngIf="showStand">
+    <div class="row">
+      <div *ngFor="let current of allStand" class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{current.name}}</h5>
+          <p class="card-text">Description : {{current.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
+          <li class="list-group-item">Cout de maintenance : {{current.maintenance}} $</li>
+          <li class="list-group-item">Prix unitaire : {{current.gain}}</li>
+          <li class="list-group-item">Pourcentage d'achat : {{current.convertion}}</li>
+        </ul>
+        <div class="card-body">
+          <button class="card-link" (click)="buyStand(current)">
+            <span>Acheter ce stand</span>
+          </button>
+        </div>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
-        <li class="list-group-item">Cout de maintenance : {{current.maintenance}} $</li>
-        <li class="list-group-item">Prix unitaire : {{current.gain}}</li>
-        <li class="list-group-item">Pourcentage d'achat : {{current.convertion}}</li>
-      </ul>
-      <div class="card-body">
-        <button class="card-link" (click)="buyStand(current)">
-          <span>Acheter ce show</span>
-        </button>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="showCrasse">
+    <div class="row">
+      <div *ngFor="let current of allCrasse" class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{current.name}}</h5>
+          <p class="card-text">Description : {{current.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
+          <li class="list-group-item">Baisse de popularité adversaire : {{current.popDown}}</li>
+          <li class="list-group-item">Nb de semaine sans spéctacle : {{current.missTurn}}</li>
+        </ul>
+        <div class="card-body">
+          <button class="card-link" (click)="buyCrasse(current)">
+            <span>Acheter cette crasse (aucune facture n'est fournit)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="showPub">
+    <div class="row">
+      <div *ngFor="let current of allPub" class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{current.name}}</h5>
+          <p class="card-text">Description : {{current.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'achat : {{current.cost}} $</li>
+          <li class="list-group-item">Gain de popularité : {{current.popUp}}</li>
+        </ul>
+        <div class="card-body">
+          <button class="card-link" (click)="buyPub(current)">
+            <span>Acheter
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

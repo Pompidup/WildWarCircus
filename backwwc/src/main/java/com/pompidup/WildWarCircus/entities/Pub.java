@@ -12,8 +12,8 @@ public class Pub {
     private Long id;
 
     private String name;
-    private double cost;
-    private double popUp;
+    private Double cost;
+    private Double popUp;
     private String description;
     private String picture;
 
@@ -41,19 +41,19 @@ public class Pub {
         this.name = name;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
-    public double getPopUp() {
+    public Double getPopUp() {
         return popUp;
     }
 
-    public void setPopUp(double popUp) {
+    public void setPopUp(Double popUp) {
         this.popUp = popUp;
     }
 

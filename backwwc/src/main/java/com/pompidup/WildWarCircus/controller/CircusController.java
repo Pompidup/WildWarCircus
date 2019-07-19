@@ -65,6 +65,9 @@ public class CircusController {
         if(circus.getNbStandMax() != null) {
             circusToUpdate.setNbStandMax(circus.getNbStandMax());
         }
+        if(circus.getPicture() != null) {
+            circusToUpdate.setPicture(circus.getPicture());
+        }
         return circusRepository.save(circusToUpdate);
     }
 }

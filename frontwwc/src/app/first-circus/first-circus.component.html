@@ -1,25 +1,30 @@
-<div>
-  <h2>Vous avez actuellement {{users[0].money}}</h2>
+<div class="container">
+  <h1>Sélection de votre premier cirque<button (click)="init()"> GO </button></h1>
 </div>
-<div class="container" *ngIf="listCircus[0] != null">
-  <div class="row">
-    <div *ngFor="let current of listCircus" class="card" style="width: 18rem;">
-      <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{current.name}}</h5>
-        <p class="card-text">Prix d'achat : {{current.cost}} $</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Prix d'une entrée : {{current.price}}</li>
-        <li class="list-group-item">Nombres de Show possible : {{current.nbShow}}</li>
-        <li class="list-group-item">Nombres de Stand possible : {{current.nbStand}}</li>
-        <li class="list-group-item">Place maximum : {{current.capacity}}</li>
-        <li class="list-group-item">Niveau actuel : {{current.level}}</li>
-      </ul>
-      <div class="card-body">
-        <button class="card-link" (click)="choose(current)">
-          <span>Choisir</span>
-        </button>
+<div *ngIf="myUser.money != null">
+  <h2>Bienvenue {{myUser.username}}</h2>
+  <h2>Vous avez actuellement {{myUser.money}} $</h2>
+
+  <div class="container" *ngIf="listCircus[0] != null">
+    <div class="row">
+      <div *ngFor="let current of listCircus" class="card" style="width: 18rem;">
+        <img class="card-img-top" src={{current.picture}} alt="{{current.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{current.name}}</h5>
+          <p class="card-text">Prix d'achat : {{current.cost}} $</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Prix d'une entrée : {{current.price}}</li>
+          <li class="list-group-item">Nombres de Show possible : {{current.nbShowMax}}</li>
+          <li class="list-group-item">Nombres de Stand possible : {{current.nbStandMax}}</li>
+          <li class="list-group-item">Place maximum : {{current.capacity}}</li>
+          <li class="list-group-item">Niveau actuel : {{current.level}}</li>
+        </ul>
+        <div class="card-body">
+          <button class="card-link" (click)="choose(current)">
+            <span>Choisir</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,13 @@
-  <h1>Welcome</h1>
+<div class="top-bar" *ngIf="authService.isLoggedIn | async as isLoggedIn">
+  <div class="top-bar-left">
+    <a class="logo" routerLink="/">Wild War Circus</a>
+  </div>
+  <div class="top-bar-right show-for-medium">
+    <ul class="menu">
+      <li><a  routerLink="/dashboard">Dashboard</a></li>
+      <li><a (click)="onLogout()">Logout</a></li>
+    </ul>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

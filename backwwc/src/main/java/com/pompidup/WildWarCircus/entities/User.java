@@ -1,5 +1,7 @@
 package com.pompidup.WildWarCircus.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,11 +15,12 @@ public class User {
     private String password;
     private String picture;
     private Boolean bot;
-    private Double money;
+    private Integer money;
 
 
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn
+    @JsonIgnore
     private Circus circus;
 
     public User() {
@@ -71,11 +74,11 @@ public class User {
         this.circus = circus;
     }
 
-    public Double getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(Double money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 }

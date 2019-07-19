@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2>Sign Up</h2>
+        <p>Please enter your details</p>
+        <label class="full-width-input">
+          UserName
+          <input type="text" placeholder="Username" formControlName="username" required>
+        </label>
+        <label class="full-width-input">
+          Password
+          <input type="password" placeholder="Password" formControlName="password" required>
+        </label>
+        <button class="button">Register</button>
+      </form>
+      <div class="login-link">
+        Already registered? <a routerLink="/login">Login Here!</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,10 +12,10 @@ public class Crasse {
     private Long id;
 
     private String name;
-    private double cost;
+    private Double cost;
     private String description;
-    private double popDown;
-    private int missTurn;
+    private Double popDown;
+    private Integer missTurn;
     private String picture;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
@@ -42,36 +42,36 @@ public class Crasse {
         this.name = name;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Double getCost() {
+        return cost;
     }
 
-    public double getPopDown() {
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public Double getPopDown() {
         return popDown;
     }
 
-    public void setPopDown(double popDown) {
+    public void setPopDown(Double popDown) {
         this.popDown = popDown;
     }
 
-    public int getMissTurn() {
+    public Integer getMissTurn() {
         return missTurn;
     }
 
-    public void setMissTurn(int missTurn) {
+    public void setMissTurn(Integer missTurn) {
         this.missTurn = missTurn;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPicture() {

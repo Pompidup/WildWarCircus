@@ -14,4 +14,8 @@ export class ShowService {
       return this.http.get<Show[]>('http://localhost:8080/show/all');
     }
 
+    public updateShow(id:number, value:any): Observable<Object> {
+      return this.http.put('http://localhost:8080/show/'+id, value);
+    }
+
   }

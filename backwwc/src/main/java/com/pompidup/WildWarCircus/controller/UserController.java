@@ -30,26 +30,39 @@ public class UserController {
         current.setPassword(_user.getPassword());
         current.setUsername(_user.getUsername());
         current.setBot(_user.isBot());
-        current.setMoney(_user.getMoney());
-        current.setCircus(circusRepository.findById(_user.getCircusId()).get());
-
+        current.setMoney(2500);
+        if(_user.getCircusId() != null) {
+            current.setCircus(circusRepository.findById(_user.getCircusId()).get());
+        }
         return userRepository.save(current);
 
     }
 
-    @GetMapping("user")
-    public User searchUser(@RequestParam(name="username") String username) {
-        return userRepository.findByUsername(username);
+    @GetMapping("/user")
+    public UserDTO searchUser(@RequestParam(name="username") String username) {
+        User userFound = userRepository.findByUsername(username);
+        UserDTO userToReturn = new UserDTO();
+        if (userFound.getCircus() != null) {
+            userToReturn.setCircusId(userFound.getCircus().getId());
+        }
+        userToReturn.setBot(userFound.isBot());
+        userToReturn.setMoney(userFound.getMoney());
+        userToReturn.setPassword(userFound.getPassword());
+        userToReturn.setPicture(userFound.getPicture());
+        userToReturn.setUsername(userFound.getUsername());
+        userToReturn.setId(userFound.getId());
+
+        return userToReturn;
     }
 
-    @DeleteMapping("user/{id}")
-    public boolean deleteUser(@PathVariable long id) {
+    @DeleteMapping("/user/{id}")
+    public boolean deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
         return true;
     }
 
     @PutMapping("/user/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody UserDTO user) {
+    public User updateUser(@PathVariable Long id, @RequestBody UserDTO user) {
         User userToUpdate = userRepository.findById(id).get();
         if (user.getUsername() != null) {
             userToUpdate.setUsername(user.getUsername());
@@ -59,6 +72,8 @@ public class UserController {
         }
         if (user.getMoney() != null) {
             userToUpdate.setMoney(user.getMoney());
+        } else {
+            userToUpdate.setMoney(2500);
         }
         if (user.getPicture() != null) {
             userToUpdate.setPicture(user.getPicture());

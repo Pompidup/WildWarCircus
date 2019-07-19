@@ -3,10 +3,10 @@ package com.pompidup.WildWarCircus.entities;
 public class CrasseDTO {
 
     private String name;
-    private double cost;
+    private Double cost;
     private String description;
-    private double popDown;
-    private int missTurn;
+    private Double popDown;
+    private Integer missTurn;
     private String picture;
     private Long circusId;
 
@@ -21,12 +21,28 @@ public class CrasseDTO {
         this.name = name;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
+    }
+
+    public Double getPopDown() {
+        return popDown;
+    }
+
+    public void setPopDown(Double popDown) {
+        this.popDown = popDown;
+    }
+
+    public Integer getMissTurn() {
+        return missTurn;
+    }
+
+    public void setMissTurn(Integer missTurn) {
+        this.missTurn = missTurn;
     }
 
     public String getDescription() {
@@ -35,22 +51,6 @@ public class CrasseDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public double getPopDown() {
-        return popDown;
-    }
-
-    public void setPopDown(double popDown) {
-        this.popDown = popDown;
-    }
-
-    public int getMissTurn() {
-        return missTurn;
-    }
-
-    public void setMissTurn(int missTurn) {
-        this.missTurn = missTurn;
     }
 
     public String getPicture() {
